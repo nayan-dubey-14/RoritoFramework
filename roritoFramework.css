@@ -1,0 +1,56 @@
+/*styling related to framework*/
+.modalMask
+{
+position:fixed;
+left:0px;
+top:0px;
+height:100%;
+width:100%;
+background-color:rgba(100,100,100,0.5);
+margin:auto;
+//overflow:auto;
+opacity:50%;
+}
+.modal
+{
+position:fixed;
+top:30%;
+left:27%;
+background-color:white;
+border: 2px solid black;
+height:300px;
+width:400px;
+min-height=300px;
+min-width=400px;
+marign:auto;
+}
+.closeButton
+{
+float:right;
+padding:2px 7px;
+cursor:pointer;
+margin-right:3px;
+margin-top:3px;
+font-size:12pt;
+}
+.header {
+padding: 5px;
+background:#ECF0F1;
+height:30px;
+right:0;
+}
+.footer {
+background:#ECF0F1;
+left:0;
+right:0;
+height:30px;
+position:absolute;
+bottom:0;
+padding:5px;
+}
+.content{
+width:97%;
+overflow:auto;
+padding:5px;
+}
+

@@ -1,0 +1,255 @@
+<!--Rorito Framework-->
+<!DOCTYPE HTML>
+<html lang='en'>
+<head>
+<title>Rorito Framework</title>
+<script src='roritoFramework.js'></script>
+<link rel='stylesheet' text='text/css' href='roritoFramework.css'>
+<style>
+/* Accordion container styles given by user */
+div#byby, div#mymy {
+  border: 1px solid #ccc;
+  width: 600px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+div#byby h3, div#mymy h3 {
+  color: #333;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease;
+}
+h3:hover {
+}
+div#byby div, div#mymy div {
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  color: #555;
+  border-bottom: 1px solid #ccc;
+}
+div#byby div:last-child, div#mymy div:last-child {
+  border-bottom: none; /* Remove bottom border for last element */
+}
+
+</style>
+<script>
+//user will write this for accordian pane
+$$$.onDocumentLoaded(function(){
+$$$.toAccordian("mymy");
+$$$.toAccordian("byby");
+});
+
+//user will write this for modal
+function xyzBeforeOpened()
+{
+alert("MODAL for xyz is opening");
+return true;
+}
+function xyzOpened()
+{
+alert("MODAL for xyz got opened");
+}
+function xyzBeforeClosed()
+{
+alert("MODAL for xyz is closing");
+return true;
+}
+function xyzClosed()
+{
+alert("MODAL for xyz got closed");
+}
+function createModal1()
+{
+$$$.modals.show("xyz");
+}
+//user will write this for send request through AJAX
+function saveEnquiry()
+{
+var firstName=$$$("firstName").value();
+var lastName=$$$("lastName").value();
+var age=$$$("age").value();
+var customer={
+"firstName":firstName,
+"lastName":lastName,
+"age":age
+};
+var detailsSpan=$$$("details");
+detailsSpan.html("");
+$$$.ajax({
+"methodType":"POST",
+"url":"servletThreeCopy",
+"data":customer,
+"sendJSON":"",
+"success":function(responseData){
+var tmp=JSON.parse(responseData);
+var str=tmp.firstName+" "+tmp.lastName+" , "+tmp.age;
+detailsSpan.html(str);
+},
+"failure":function(){
+alert("Some Error");
+}
+});
+}
+//user will write this for form validation
+function doSomething()
+{
+return $$$.isFormValid({
+"nm":{
+"required":true,
+"maxLength":20,
+"errorPane":"nmErrorSection",
+"errors":{
+"required":"Name required",
+"maxLength":"Name cannot exceed 20 characters"
+}
+},
+"ad":{
+"required":true,
+"errorPane":"adErrorSection",
+"errors":{
+"required":"Address required"
+}
+},
+"ct":{
+"invalid":-1,
+"errorPane":"ctErrorSection",
+"errors":{
+"invalid":"Select city"
+}
+},
+"gender":{
+"required":true,
+"errorPane":"genderErrorSection",
+"errors":{
+"required":"Select gender"
+}
+},
+"agree":{
+"requiredState":true,
+"displayAlert":true,
+"errors":{
+"requiredState":"Select I Agree Checkbox"
+}
+}
+});
+}
+</script>
+</head>
+<body>
+<div id='mymy'>
+<h3>Heading 1</h3>
+<div>
+1 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+1 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+1 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+1 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+1 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+1 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+</div>
+<h3>Heading 2</h3>
+<div>
+2 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+2 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+2 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+2 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+2 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+2 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+</div>
+<h3>Heading 3</h3>
+<div>
+3 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+3 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+3 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+3 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+3 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+3 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+</div>
+<h3>Heading 4</h3>
+<div>
+4 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+4 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+4 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+4 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+4 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+4 Hello Hello Hello Hello Hello Hello Hello Hello<br>
+</div>
+</div>
+<div id='byby'>
+<h3>Heading 1</h3>
+<div>
+1 By By By By By By By By By By By By By By By<br>
+1 By By By By By By By By By By By By By By By<br>
+1 By By By By By By By By By By By By By By By<br>
+1 By By By By By By By By By By By By By By By<br>
+1 By By By By By By By By By By By By By By By<br>
+1 By By By By By By By By By By By By By By By<br>
+</div>
+<h3>Heading 2</h3>
+<div>
+2 By By By By By By By By By By By By By By By<br>
+2 By By By By By By By By By By By By By By By<br>
+2 By By By By By By By By By By By By By By By<br>
+2 By By By By By By By By By By By By By By By<br>
+2 By By By By By By By By By By By By By By By<br>
+2 By By By By By By By By By By By By By By By<br>
+</div>
+<h3>Heading 3</h3>
+<div>
+3 By By By By By By By By By By By By By By By<br>
+3 By By By By By By By By By By By By By By By<br>
+3 By By By By By By By By By By By By By By By<br>
+3 By By By By By By By By By By By By By By By<br>
+3 By By By By By By By By By By By By By By By<br>
+3 By By By By By By By By By By By By By By By<br>
+</div>
+</div>
+
+<button onClick='createModal1()'>Show Modal 1</button><br>
+<div id='xyz'  style='display:none' forModal=true  size="400x200" header="Some heading" footer="Some footer" 
+maskColor="grey" modalBackgroundColor="white" closeButton=true beforeOpen=xyzBeforeOpened() 
+afterOpen=xyzOpened() beforeClose=xyzBeforeClosed() afterClose=xyzClosed()>
+Good morning<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+My name is Nayan Dubey<br>
+</div><br>
+First Name<input type='text' id='firstName'><br>
+Last Name<input type='text' id='lastName'><br>
+Age<input type='text' id='age'><br>
+<button type='button' onclick='saveEnquiry()'>OK</button><br><br>
+Details:&nbsp;<div id='details'></div><br><br>
+<a href='/ajax/index.html'>HOME</a><br><br>
+<form id='someForm' action='xyz' onsubmit='return doSomething()'>
+Name <input type='text' name='nm' id='nm'>
+<span style='color:red' id='nmErrorSection'></span><br>
+Address &nbsp;&nbsp; <span style='color:red' id='adErrorSection'></span><br>
+<textarea name='ad' id='ad'></textarea><br>
+Select City&nbsp;<select id='ct' name='ct'>
+<option value='-1'>Select city</option>
+<option value='2'>Indore</option>
+<option value='3'>Pune</option>
+<option value='4'>Bhopal</option>
+<option value='5'>Ujjain</option>
+</select><span id='ctErrorSection' style='color:red'></span><br>
+Gender &nbsp;&nbsp;
+Male<input type='radio' name='gender' id='ml' value='M'>&nbsp;
+Female<input type='radio' name='gender' id='fe' value='F'>
+<span id='genderErrorSection' style='color:red'></span><br>
+<b>I agree to....</b>&nbsp;<input type='checkbox' name='agree' id='agree' value='Y'><br>
+<button type='submit'>Register</button> 
+</form>
+</body>
+</html>
